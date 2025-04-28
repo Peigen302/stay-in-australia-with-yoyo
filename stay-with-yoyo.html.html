@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stay in Australia with Yoyo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .section {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .progress-container {
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .progress-bar {
+            height: 20px;
+            background: #4caf50;
+            width: 0%;
+            line-height: 20px;
+            color: white;
+            text-align: center;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Stay in Australia with Yoyo</h1>
+
+<div class="progress-container">
+    <div id="progress-bar" class="progress-bar">0%</div>
+</div>
+
+<div class="section">
+    <h2>1. 主申请人（PhD学生）</h2>
+    <label><input type="checkbox"> 护照扫描件</label>
+    <label><input type="checkbox"> 无犯罪证明</label>
+    <label><input type="checkbox"> COE（博士录取确认）</label>
+    <label><input type="checkbox"> GTE声明</label>
+    <label><input type="checkbox"> 英语成绩或豁免信</label>
+    <label><input type="checkbox"> 本科、硕士学历证书</label>
+    <label><input type="checkbox"> 本科、硕士成绩单</label>
+    <label><input type="checkbox"> 奖学金证明信</label>
+    <label><input type="checkbox"> 医疗保险（OSHC）</label>
+    <label><input type="checkbox"> 资金证明（如有）</label>
+</div>
+
+<div class="section">
+    <h2>2. 女朋友（副申请人）</h2>
+    <label><input type="checkbox"> 护照扫描件</label>
+    <label><input type="checkbox"> 无犯罪证明</label>
+    <label><input type="checkbox"> 出生证明（如有）</label>
+    <label><input type="checkbox"> 本人电子照片</label>
+    <label><input type="checkbox"> 医疗保险（同主申请人）</label>
+    <label><input type="checkbox"> 个人资金证明（如需要）</label>
+</div>
+
+<div class="section">
+    <h2>3. 共同材料（关系证明）</h2>
+    <label><input type="checkbox"> 联名租房合同</label>
+    <label><input type="checkbox"> 联名水电煤账单</label>
+    <label><input type="checkbox"> 联名电话/网络账单</label>
+    <label><input type="checkbox"> 联名银行账户证明</label>
+    <label><input type="checkbox"> 共同地址信件</label>
+    <label><input type="checkbox"> 合照合集</label>
+    <label><input type="checkbox"> 家人朋友推荐信（可选）</label>
+    <label><input type="checkbox"> 共同旅行记录</label>
+    <label><input type="checkbox"> 共同财务安排证明（可选）</label>
+    <label><input type="checkbox"> 感情叙述信（Relationship Statement）</label>
+    <label><input type="checkbox"> 其他辅助材料（选填）</label>
+</div>
+
+<div class="section">
+    <h2>4. 系统填写检查</h2>
+    <label><input type="checkbox"> ImmiAccount注册完成</label>
+    <label><input type="checkbox"> 添加副申请人信息</label>
+    <label><input type="checkbox"> 材料上传到正确类别</label>
+    <label><input type="checkbox"> 缴纳签证费</label>
+    <label><input type="checkbox"> 预约体检（体检号HAP ID）</label>
+</div>
+
+<script>
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const percent = Math.round((checked / checkboxes.length) * 100);
+        const bar = document.getElementById('progress-bar');
+        bar.style.width = percent + '%';
+        bar.textContent = percent + '%';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox, index) => {
+            const checked = localStorage.getItem('checkbox_' + index);
+            if (checked === 'true') {
+                checkbox.checked = true;
+            }
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem('checkbox_' + index, checkbox.checked);
+                updateProgress();
+            });
+        });
+        updateProgress();
+    });
+</script>
+
+</body>
+</html>
+
+
